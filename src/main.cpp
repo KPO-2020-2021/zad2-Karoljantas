@@ -1,6 +1,6 @@
 #include <iostream>
 #include "BazaTestu.hh"
-
+#include "Statystyka.hh"
 using namespace std;
 
 
@@ -8,7 +8,7 @@ using namespace std;
 
 int main(int argc, char **argv)
 {
-
+ 
   if (argc < 2) {
     cout << endl;
     cout << " Brak opcji okreslajacej rodzaj testu." << endl;
@@ -28,12 +28,12 @@ int main(int argc, char **argv)
 
   
   cout << endl;
-  cout << " Start testu arytmetyki zespolonej: " << argv[1] << endl;
+  cout << " Start testu arytmetyki zespolonej: " << argv[1] << endl;    //wypisze komunikat
   cout << endl;
 
-  WyrazenieZesp   WyrZ_PytanieTestowe;
+  WyrazenieZesp   WyrZ_PytanieTestowe;   //zmienne
   
-  while (PobierzNastpnePytanie(&BazaT,&WyrZ_PytanieTestowe)) {
+  while (PobierzNastpnePytanie(&BazaT,&WyrZ_PytanieTestowe)) {     //przechodzi po wszystkich pytaniach
     cout << " Czesc rzeczywista pierwszego argumentu: ";
     cout << WyrZ_PytanieTestowe.Arg1.re << endl;
   }
