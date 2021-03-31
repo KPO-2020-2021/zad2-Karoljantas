@@ -2,7 +2,7 @@
 
 void Wyswietl(WyrazenieZesp  WyrZ)   //wyswietl
 {
-    Wyswietl(WyrZ.Arg1);    //1l zesp
+    Wyswietl(WyrZ.Arg1);   //1 l zesp
     switch (WyrZ.Op)
     {case Op_Dodaj:     //operator
     cout<<"+";
@@ -18,11 +18,11 @@ case Op_Mnoz:
     break;
     
     }
-       Wyswietl(WyrZ.Arg2);   //2 l zesp
+       Wyswietl(WyrZ.Arg2);    //2 l zesp
 }
-LZespolona Oblicz(WyrazenieZesp  WyrZ)    //oblicz
+LZespolona Oblicz(WyrazenieZesp  WyrZ)  //oblicz
 {LZespolona wynikZ; 
-    switch (WyrZ.Op)     //w zaleznosci od dzialania
+    switch (WyrZ.Op)       //w zaleznosci od dzialania
     {
     case Op_Dodaj:
     wynikZ=WyrZ.Arg1+WyrZ.Arg2;

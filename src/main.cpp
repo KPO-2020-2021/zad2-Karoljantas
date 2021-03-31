@@ -8,7 +8,7 @@ using namespace std;
 
 int main(int argc, char **argv)
 {
- 
+
   if (argc < 2) {
     cout << endl;
     cout << " Brak opcji okreslajacej rodzaj testu." << endl;
@@ -32,15 +32,39 @@ int main(int argc, char **argv)
   cout << endl;
 
   WyrazenieZesp   WyrZ_PytanieTestowe;   //zmienne
-  
-  while (PobierzNastpnePytanie(&BazaT,&WyrZ_PytanieTestowe)) {     //przechodzi po wszystkich pytaniach
-    cout << " Czesc rzeczywista pierwszego argumentu: ";
-    cout << WyrZ_PytanieTestowe.Arg1.re << endl;
+  LZespolona wynik, wynik_obliczony;
+   Statystka stat={0,0,0};    //statystyka
+  while (PobierzNastpnePytanie(&BazaT,&WyrZ_PytanieTestowe))   //przechodzi po wszystkihc pytaniach
+  {
+   cout<<"wyrazenie ktore oblicz to : "<<WyrZ_PytanieTestowe<<endl;
+   wynik_obliczony=Oblicz(WyrZ_PytanieTestowe);
+    for(int i=0; i<3; i++)
+    {
+      cout<<"wpisz wynik : "<<endl;      //wpisujemy wynik
+      cin>>wynik;
+      if(cin.good())
+      {
+        break;
+      }
+      cin.clear();     //czyscimy bit bledu
+      cin.ignore(1024,'\n');   //czyscimy bufor pamieci
+    }
+    if(wynik_obliczony.re==wynik.re && wynik_obliczony.im == wynik.im)   //porownanie
+    {
+      cout<<"dobrze "<<endl;
+      stat.Poprawne++;
+    }
+    else
+    {
+         cout<<"zle poprawny wynik to  "<< wynik_obliczony <<endl;
+         stat.Bledne++;
+    }
+stat.Wszystkie++;   //zwiekszamy statystyka
   }
-
+wyswietl(stat);   //wyswietlamy staty
   
-  cout << endl;
-  cout << " Koniec testu" << endl;
+  cout << endl;  //zostawia linie przerwy
+  cout << " Koniec testu" << endl;    //koniec testu
   cout << endl;
 
 }

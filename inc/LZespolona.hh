@@ -2,12 +2,14 @@
 #define LZESPOLONA_HH
 #include <iostream>
 #include <cmath>
+#include <stdexcept>
+#define MIN_DIFF 0.001
 /*!
  *  Plik zawiera definicje struktury LZesplona oraz zapowiedzi
  *  przeciazen operatorow arytmetycznych dzialajacych na tej 
  *  strukturze.
  */
-using namespace std;
+using namespace std;  //uzycie przstrzeni nazw 
 
 /*!
  * Modeluje pojecie liczby zespolonej
@@ -22,17 +24,19 @@ struct  LZespolona {
  * Dalej powinny pojawic sie zapowiedzi definicji przeciazen operatorow
  */
 
-void Wyswietl(LZespolona); //wyswietl
+void Wyswietl(LZespolona);   //wyswietl
+bool  operator == (LZespolona  Skl1,  LZespolona  Skl2);
 
 ostream &operator << (ostream & wyj, const LZespolona & argument);   //przeciazenie przesuniecia bitowego w lewo
+istream &operator >> (istream & wej,  LZespolona & argument);    //przeciazenie przesuniecia bitowego w prawo
 
 LZespolona  operator + (LZespolona  Skl1,  LZespolona  Skl2);  //przecizenie znaku +
 
-LZespolona operator - (LZespolona skl1, LZespolona skl2);   //przecizenie znaku -
+LZespolona operator - (LZespolona skl1, LZespolona skl2);
 
-LZespolona operator * (LZespolona skl1, LZespolona skl2);    //przecizenie znaku *
+LZespolona operator * (LZespolona skl1, LZespolona skl2);
 
-LZespolona operator / (LZespolona skl1, LZespolona skl2);    //przecizenie znaku /
+LZespolona operator / (LZespolona skl1, LZespolona skl2);
 
 LZespolona operator / (LZespolona skl1, double skl2); //liczba przez liczbe 
 

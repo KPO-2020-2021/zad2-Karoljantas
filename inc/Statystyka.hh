@@ -8,6 +8,7 @@ struct Statystka{
     int Bledne;
     int Wszystkie;
 };
-
-
+void wyswietl(Statystka);
+double Oblicz_pop(Statystka);
+double Oblicz_niepop(Statystka);
 #endif

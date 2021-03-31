@@ -1,7 +1,14 @@
 #include "LZespolona.hh"
 
 
-
+bool  operator == (LZespolona  Skl1,  LZespolona  Skl2){
+ 
+  if (abs(Skl1.re - Skl2.re) <= MIN_DIFF && abs(Skl1.im - Skl2.im) <= MIN_DIFF)
+    return true;
+  else
+    return false;
+  
+}
 /*!
  * Realizuje dodanie dwoch liczb zespolonych.
  * Argumenty:
@@ -12,12 +19,12 @@
  */
 LZespolona  operator + (LZespolona  Skl1,  LZespolona  Skl2)
 {
-  LZespolona  Wynik;  //wynik liczba z
+  LZespolona  Wynik;   //wynik liczba z
 
-  Wynik.re = Skl1.re + Skl2.re;    //cz re
+  Wynik.re = Skl1.re + Skl2.re;   //cz re
   Wynik.im = Skl1.im + Skl2.im;    //cz im
 
-  return Wynik;     //zwraca wynik
+  return Wynik;   //zwraca wynik
 }
 LZespolona operator - (LZespolona skl1, LZespolona skl2)   //przeciazenie -
 {
@@ -27,12 +34,12 @@ LZespolona operator - (LZespolona skl1, LZespolona skl2)   //przeciazenie -
    return wynik;  //zwraza wynik
 }
 
-LZespolona operator * (LZespolona skl1, LZespolona skl2)    //przeciazenie *
+LZespolona operator * (LZespolona skl1, LZespolona skl2)    //przeciozenie *
 {
-   LZespolona wynik;    //jak wyglada wynik
+   LZespolona wynik;   
 wynik.re=skl1.re*skl2.re-skl1.im*skl2.im;
 wynik.im=skl1.re*skl2.im+skl1.im*skl2.re;
-return wynik;     //zwraca wynik
+return wynik;
 }
 LZespolona Sprzezenie(LZespolona argument)   //sprzezenie
 {
@@ -44,33 +51,35 @@ return wynik;
 double Modul2(LZespolona argument)
 {
   double wynik;   //wynik double
-  wynik=sqrt(pow(argument.re,2)+pow(argument.im,2));     //modul  wzor
+  wynik=sqrt(pow(argument.re,2)+pow(argument.im,2));    //modul  wzor
   return wynik*wynik;   //zwraca modul ^2
 }
-LZespolona operator / (LZespolona skl1, double skl2)      //przecizenie dzielenia l zesp/lre
+LZespolona operator / (LZespolona skl1, double skl2)    //przecizenie dzielenia l zesp/lre
 {
   LZespolona wynik;
+  if(skl2==0)
+  throw runtime_error("Math error: Attempted to divide by Zero\n");
   wynik.re=skl1.re/skl2;
   wynik.im=skl1.im/skl2;
   return wynik;
 }
-LZespolona operator / (LZespolona skl1, LZespolona skl2)     //przecizenie dzielenia l zesp /l sesp
+LZespolona operator / (LZespolona skl1, LZespolona skl2)    //przecizenie dzielenia l zesp /l sesp
 {
   LZespolona wynik;
   wynik=skl1*Sprzezenie(skl2)/Modul2(skl2);
   return wynik;
 }
 
-void Wyswietl(LZespolona argument)     //wyswietl
+void Wyswietl(LZespolona argument)    //wyswietl
 {
   cout<<"("<<argument.re<<showpos<<argument.im<<noshowpos<<"i)"<<endl;//wyswietla i dobiera znak ze wzgledu na cz im (showpos)
  
 }
 
-void wczytaj(LZespolona& argument )    //wczytaj
+void wczytaj(LZespolona& argument )  //wczytaj
 {
-  char znak;
-  cin>>znak>>argument.re>>argument.im>>znak>>znak;
+  char znak; //znak
+  cin>>znak>>argument.re>>argument.im>>znak>>znak; //wczytuje (a+bi)
 
 }
 
@@ -80,3 +89,25 @@ ostream &operator << (ostream & wyj, const LZespolona & argument)   //przecizeni
   return wyj;
 }
 
+istream &operator >> (istream & wej,  LZespolona & argument)    //przecizenie prawe 
+{
+  char znak;   //znak
+  wej>>znak;  //wczytuje znak
+  if(znak!='(')
+  {
+    wej.setstate(ios::failbit);   //ustawienie bitu bledu
+  }
+   wej>>argument.re;  //wczytuje re
+    wej>>argument.im;
+      wej>>znak;  //wczytuje i
+  if(znak!='i')
+  {
+    wej.setstate(ios::failbit);
+  }
+    wej>>znak;  //nawias)
+  if(znak!=')')
+  {
+    wej.setstate(ios::failbit); //blad nawias)
+  }
+  return wej;
+}
