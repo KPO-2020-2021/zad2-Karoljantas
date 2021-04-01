@@ -1,9 +1,9 @@
 #include "LZespolona.hh"
 
 
-bool  operator == (LZespolona  Skl1,  LZespolona  Skl2){
+const bool  LZespolona::operator ==  (  LZespolona  Skl2)const{
  
-  if (abs(Skl1.re - Skl2.re) <= MIN_DIFF && abs(Skl1.im - Skl2.im) <= MIN_DIFF)
+  if (abs( re - Skl2.re) <= MIN_DIFF && abs( im - Skl2.im) <= MIN_DIFF)
     return true;
   else
     return false;
@@ -17,56 +17,56 @@ bool  operator == (LZespolona  Skl1,  LZespolona  Skl2){
  * Zwraca:
  *    Sume dwoch skladnikow przekazanych jako parametry.
  */
-LZespolona  operator + (LZespolona  Skl1,  LZespolona  Skl2)
+LZespolona  LZespolona::operator + (  LZespolona  Skl2)
 {
   LZespolona  Wynik;   //wynik liczba z
 
-  Wynik.re = Skl1.re + Skl2.re;   //cz re
-  Wynik.im = Skl1.im + Skl2.im;    //cz im
+  Wynik.re =  re + Skl2.re;   //cz re
+  Wynik.im =  im + Skl2.im;    //cz im
 
   return Wynik;   //zwraca wynik
 }
-LZespolona operator - (LZespolona skl1, LZespolona skl2)   //przeciazenie -
+LZespolona LZespolona::operator - (  LZespolona skl2)   //przeciazenie -
 {
   LZespolona wynik;    //jak wyglada wynik
-  wynik.re = skl1.re - skl2.re;
-   wynik.im = skl1.im - skl2.im;
+  wynik.re =  re - skl2.re;
+   wynik.im =  im - skl2.im;
    return wynik;  //zwraza wynik
 }
 
-LZespolona operator * (LZespolona skl1, LZespolona skl2)    //przeciozenie *
+LZespolona LZespolona::operator * (  LZespolona skl2)    //przeciozenie *
 {
    LZespolona wynik;   
-wynik.re=skl1.re*skl2.re-skl1.im*skl2.im;
-wynik.im=skl1.re*skl2.im+skl1.im*skl2.re;
+wynik.re= re*skl2.re- im*skl2.im;
+wynik.im= re*skl2.im+ im*skl2.re;
 return wynik;
 }
-LZespolona Sprzezenie(LZespolona argument)   //sprzezenie
+LZespolona LZespolona::Sprzezenie()   //sprzezenie
 {
 LZespolona wynik;
-wynik.re=argument.re;
-wynik.im=-1*argument.im;
+wynik.re= re;
+wynik.im=-1* im;
 return wynik;
 }
-double Modul2(LZespolona argument)
+double LZespolona::Modul2()   //modul
 {
   double wynik;   //wynik double
-  wynik=sqrt(pow(argument.re,2)+pow(argument.im,2));    //modul  wzor
+  wynik=sqrt(pow( re,2)+pow( im,2));    //modul  wzor
   return wynik*wynik;   //zwraca modul ^2
 }
-LZespolona operator / (LZespolona skl1, double skl2)    //przecizenie dzielenia l zesp/lre
+LZespolona LZespolona::operator / (  double skl2)    //przecizenie dzielenia l zesp/lre
 {
   LZespolona wynik;
   if(skl2==0)
   throw runtime_error("Math error: Attempted to divide by Zero\n");
-  wynik.re=skl1.re/skl2;
-  wynik.im=skl1.im/skl2;
+  wynik.re= re/skl2;
+  wynik.im= im/skl2;
   return wynik;
 }
-LZespolona operator / (LZespolona skl1, LZespolona skl2)    //przecizenie dzielenia l zesp /l sesp
+LZespolona LZespolona::operator / (  LZespolona skl2)    //przecizenie dzielenia l zesp /l sesp
 {
   LZespolona wynik;
-  wynik=skl1*Sprzezenie(skl2)/Modul2(skl2);
+  wynik=*this*skl2.Sprzezenie()/skl2.Modul2();
   return wynik;
 }
 
@@ -110,4 +110,34 @@ istream &operator >> (istream & wej,  LZespolona & argument)    //przecizenie pr
     wej.setstate(ios::failbit); //blad nawias)
   }
   return wej;
+}
+
+
+  LZespolona LZespolona :: operator +=(LZespolona skl1)   //przeciazenie +=
+  {
+  *this= *this+skl1;
+  return *this;
+  }
+  LZespolona LZespolona :: operator /=(LZespolona skl1)    //przeciazenie /=
+  {
+  *this= *this/skl1;
+  return *this;
+  }
+
+double LZespolona :: arg()   //argument Lzespolonej
+{
+double wynik;
+if(re>0)
+{
+wynik=  atan2(im,re)*180/M_PI;
+
+}
+else if(re<0)
+{
+ wynik= (atan2(im,re)+M_PI)*180/M_PI;
+}
+else
+{
+  throw "arg a jest zero czyli wyjatek";
+}return wynik;
 }

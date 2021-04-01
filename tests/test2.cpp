@@ -73,11 +73,11 @@ TEST_CASE("Test LZespolona sprzezenie") {
     y.im=0;
    
    
-    CHECK(Sprzezenie(x)== y);
+    CHECK(x.Sprzezenie()== y);
 }
 
 
-TEST_CASE("Test LZespolona dzielenie przez lz - zero") {
+TEST_CASE("Test LZespolona sprzezenie") {
     LZespolona x,y;
     
     x.re = 2;
@@ -85,7 +85,7 @@ TEST_CASE("Test LZespolona dzielenie przez lz - zero") {
      y.re=2;
     y.im=-2;
  
-   CHECK(Sprzezenie(x)== y);
+   CHECK(x.Sprzezenie()== y);
 }
 
 
@@ -99,7 +99,7 @@ TEST_CASE("Test LZespolona modul") {
      double y;
      y=8.0;
  
-   CHECK(Modul2(x)== y);
+   CHECK(x.Modul2()== y);
 }
 
 TEST_CASE("Test LZespolona dodawanie") {
@@ -110,7 +110,7 @@ TEST_CASE("Test LZespolona dodawanie") {
      y.re=3;
     y.im=3;
  
-   CHECK(Oblicz(x)== y);
+   CHECK(x.Oblicz()== y);
 }
 TEST_CASE("Test LZespolona odejmowanie") {
     WyrazenieZesp x={{2,1}, Op_Odejmij, {1,2}};
@@ -120,7 +120,7 @@ TEST_CASE("Test LZespolona odejmowanie") {
      y.re=1;
     y.im=-1;
  
-   CHECK(Oblicz(x)== y);
+   CHECK(x.Oblicz()== y);
 }
 TEST_CASE("Test LZespolona mnoz") {
     WyrazenieZesp x={{2,1}, Op_Mnoz, {1,2}};
@@ -130,7 +130,7 @@ TEST_CASE("Test LZespolona mnoz") {
      y.re=0;
     y.im=5;
  
-   CHECK(Oblicz(x)== y);
+   CHECK(x.Oblicz()== y);
 }
 TEST_CASE("Test LZespolona dziel") {
     WyrazenieZesp x={{2,1}, Op_Dziel, {1,2}};
@@ -140,7 +140,7 @@ TEST_CASE("Test LZespolona dziel") {
      y.re=0.8;
     y.im=-0.6;
  
-   CHECK(Oblicz(x)== y);
+   CHECK(x.Oblicz()== y);
 }
 
 TEST_CASE("Test LZesspolona statystyka") {
@@ -149,7 +149,7 @@ TEST_CASE("Test LZesspolona statystyka") {
     
    
  
-   CHECK(Oblicz_pop(x)== y);
+   CHECK(x.Oblicz_pop()== y);
 }
 TEST_CASE("Test LZespolona statystyka") {
     Statystka x={5,5,10};
@@ -157,7 +157,7 @@ TEST_CASE("Test LZespolona statystyka") {
     
    
  
-   CHECK(Oblicz_niepop(x)== y);
+   CHECK(x.Oblicz_niepop()== y);
 }
 
 TEST_CASE("Test LZespolona wczytywanie") {
@@ -180,5 +180,19 @@ x.im = 2;
  std::cout << out.str() << std::endl;
     
    CHECK("(2+2i)" == out.str() );
+}
+
+TEST_CASE("Test LZespolona dzielenie dodane") {
+    LZespolona x, y,t;
+     t.re = 2;
+     t.im = 2;
+
+    x.re = 2;
+    x.im = 2;
+
+    y.re = 1;
+    y.im = 0;
+   x/=t;
+    CHECK( x== y);
 }
 

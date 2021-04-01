@@ -20,24 +20,26 @@ case Op_Mnoz:
     }
        Wyswietl(WyrZ.Arg2);    //2 l zesp
 }
-LZespolona Oblicz(WyrazenieZesp  WyrZ)  //oblicz
+
+LZespolona WyrazenieZesp::Oblicz()  //oblicz
 {LZespolona wynikZ; 
-    switch (WyrZ.Op)       //w zaleznosci od dzialania
+    switch ( Op)       //w zaleznosci od dzialania
     {
     case Op_Dodaj:
-    wynikZ=WyrZ.Arg1+WyrZ.Arg2;
+    wynikZ= Arg1+ Arg2;
        break;
        case Op_Odejmij:
-    wynikZ=WyrZ.Arg1-WyrZ.Arg2;
+    wynikZ= Arg1- Arg2;
        break;
        case Op_Mnoz:
-    wynikZ=WyrZ.Arg1*WyrZ.Arg2;
+    wynikZ= Arg1* Arg2;
        break;
        case Op_Dziel:
-    wynikZ=WyrZ.Arg1/WyrZ.Arg2;
+    wynikZ= Arg1/ Arg2;
        break;
     }return wynikZ;
 }
+
 void wczytaj(WyrazenieZesp& WyrZ)   //wczytaj
 {
      wczytaj(WyrZ.Arg1 );    //l zesp 1

@@ -7,8 +7,9 @@ struct Statystka{
     int Poprawne;
     int Bledne;
     int Wszystkie;
+double Oblicz_pop();
+double Oblicz_niepop();
 };
 void wyswietl(Statystka);
-double Oblicz_pop(Statystka);
-double Oblicz_niepop(Statystka);
+
 #endif

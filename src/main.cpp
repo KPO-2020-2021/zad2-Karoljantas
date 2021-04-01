@@ -37,7 +37,7 @@ int main(int argc, char **argv)
   while (PobierzNastpnePytanie(&BazaT,&WyrZ_PytanieTestowe))   //przechodzi po wszystkihc pytaniach
   {
    cout<<"wyrazenie ktore oblicz to : "<<WyrZ_PytanieTestowe<<endl;
-   wynik_obliczony=Oblicz(WyrZ_PytanieTestowe);
+   wynik_obliczony=WyrZ_PytanieTestowe.Oblicz();
     for(int i=0; i<3; i++)
     {
       cout<<"wpisz wynik : "<<endl;      //wpisujemy wynik
@@ -62,9 +62,11 @@ int main(int argc, char **argv)
 stat.Wszystkie++;   //zwiekszamy statystyka
   }
 wyswietl(stat);   //wyswietlamy staty
-  
+  LZespolona a{3,4};
+cout<<a.arg()<<endl;
   cout << endl;  //zostawia linie przerwy
   cout << " Koniec testu" << endl;    //koniec testu
   cout << endl;
 
 }
+

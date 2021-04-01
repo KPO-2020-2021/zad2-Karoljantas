@@ -199,3 +199,98 @@ TEST_CASE("test LZespolona mnoz 5"){
     
     CHECK(x*y == z);
 }
+
+TEST_CASE("test LZespolona Suma dodane"){
+    LZespolona x, y, z;
+
+    x.re = 1;
+    x.im = 1;
+
+    y.re = 0.0;
+    y.im = 0.0;
+
+    z.re = 1;
+    z.im = 1;
+    x+=y;
+    CHECK( x == z);
+}
+
+
+TEST_CASE("test LZespolona Suma dodane"){
+    LZespolona x, y, z;
+
+    x.re = 1;
+    x.im = 1;
+
+    y.re = 1;
+    y.im = -3;
+
+    z.re = 2;
+    z.im = -2;
+    
+    x+=y;
+    CHECK( x == z);
+}
+
+TEST_CASE("test LZespolona Suma dodane"){
+    LZespolona x, y, z;
+
+    x.re = 1;
+    x.im = 1;
+
+    y.re = 0.0;
+    y.im = 0.0;
+
+    z.re = 1;
+    z.im = 1;
+    
+   x+=y;
+    CHECK( x == z);
+}
+
+TEST_CASE("test LZespolona Suma dodane"){
+    LZespolona x, y, z;
+
+    x.re = 1;
+    x.im = 1;
+
+    y.re = 0;
+    y.im = 0;
+
+    z.re = 1;
+    z.im = 1;
+    
+   x+=y;
+    CHECK( x == z);
+}
+
+
+TEST_CASE("test LZespolona Suma dodane"){
+    LZespolona x, y, z;
+
+    x.re = 1;
+    x.im = 1;
+
+    y.re = 0.0001;
+    y.im = 0.0001;
+
+    z.re = 1;
+    z.im = 1;
+    
+    CHECK(x+y == z);
+}
+
+TEST_CASE("test LZespolona Suma dodane"){
+    LZespolona x, y, z;
+
+    x.re = 1;
+    x.im = 1;
+
+    y.re = 0.00009;
+    y.im = 0.00001;
+
+    z.re = 1;
+    z.im = 1;
+    
+    CHECK(x+y == z);
+}

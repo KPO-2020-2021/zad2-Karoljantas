@@ -20,6 +20,7 @@ struct WyrazenieZesp {
   LZespolona   Arg1;   // Pierwszy argument wyrazenia arytmetycznego
   Operator     Op;     // Opertor wyrazenia arytmetycznego
   LZespolona   Arg2;   // Drugi argument wyrazenia arytmetycznego
+  LZespolona Oblicz();
 };
 
 
@@ -30,7 +31,7 @@ struct WyrazenieZesp {
 
 
 void Wyswietl(WyrazenieZesp  WyrZ);
-LZespolona Oblicz(WyrazenieZesp  WyrZ);
+
 void wczytaj(WyrazenieZesp&);
 ostream &operator << (ostream & wyj, const WyrazenieZesp & WyrZ);
 #endif

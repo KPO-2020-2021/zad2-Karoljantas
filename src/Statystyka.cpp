@@ -7,11 +7,11 @@ cout<<"Bledne odpowiedzi to: "<<stat.Bledne<< endl;
 cout<<"Procet poprawnych to: "<<stat.Poprawne*100.0/stat.Wszystkie<< endl;
 
 }
-double Oblicz_pop(Statystka stat)
+double Statystka::Oblicz_pop( )    //oblicza poprawne
 {
-    return stat.Poprawne*100.0/stat.Wszystkie;
+    return  Poprawne*100.0/ Wszystkie;
 }
-double Oblicz_niepop(Statystka stat)
+double Statystka::Oblicz_niepop( )     //oblicza n. poprawne
 {
-    return stat.Bledne*100.0/stat.Wszystkie;
+    return  Bledne*100.0/ Wszystkie;
 }
